@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Coffee Lovers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon-modified.png">
+  <script>
+function addToCart(itemName, itemPrice) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name: itemName, price: itemPrice });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+}
+
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let count = cart.length;
+
+    document.getElementById('cartCount').innerText = count;
+    document.getElementById('cart-count').innerText = count;
+}
+
+window.onload = updateCartCount;
+
+    function showCart() {
+      let cartItemsHTML = "";
+      let totalPrice = 0;
+
+      cart.forEach(item => {
+        cartItemsHTML += `<li>${item.name} - $${item.price}</li>`;
+        totalPrice += item.price;
+      });
+
+      cartItemsHTML += `<li><strong>Total: $${totalPrice.toFixed(2)}</strong></li>`;
+      cartItemsHTML += `<button class="btn btn-success" onclick="checkout()">Checkout</button>`;
+
+      document.getElementById('cartDetails').innerHTML = cartItemsHTML;
+    }
+
+    function checkout() {
+      alert("Thank you for your purchase!");
+      cart = []; 
+      updateCartCount();
+      document.getElementById('cartDetails').innerHTML = "";
+    }
+  </script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: sticky ;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="indx.html">Coffee Lovers</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a href="about_us.html" class="nav-link">About Us</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Cart Icon with Badge -->
+    <a href="cart.html" class="text-light">
+      <img src="https://img.icons8.com/carbon-copy/100/FD7E14/shopping-cart.png" alt="Cart Logo" style="width: 50px; height: 40px; margin-left: 0px;">
+      <i class="bi bi-cart" style="font-size: 1.5rem;"></i>
+      <span class="badge bg-danger position-absolute bottom-0 end-0 translate-middle p-1" id="cartCount">0</span>
+    </a>
+  </div>
+</nav>
+
+
+  <header class="text-center py-5 bg-dark text-white">
+    <h1 style="font-family: cursive;" class="animate__animated animate__backInLeft">Our Menu</h1>
+    <p>Explore our variety of offerings crafted with passion and quality!</p>
+  </header>
+
+<section class="py-5">
+  <h2 class="text-center mb-4">Coffee Types</h2>
+  <div id="coffeeCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#coffeeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#coffeeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="espresso.jpg" class="card-img-top" alt="Espresso">
+              <div class="card-body">
+                <h5 class="card-title">Espresso</h5>
+                <p><strong>Price:</strong> $3.50</p>
+                <p><strong>Ingredients:</strong> Freshly ground coffee beans, water.</p>
+                <button class="btn btn-dark" onclick="addToCart('Espresso', 3.50)">Add to cart</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="latte.jpg" class="card-img-top" alt="Latte">
+              <div class="card-body">
+                <h5 class="card-title">Latte</h5>
+                <p><strong>Price:</strong> $4.00</p>
+                <p><strong>Ingredients:</strong> Espresso, steamed milk, foam.</p>
+                <button class="btn btn-dark" onclick="addToCart('Latte', 4)">Add to cart</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="cappuccino.avif" class="card-img-top" alt="Cappuccino">
+              <div class="card-body">
+                <h5 class="card-title">Cappuccino</h5>
+                <p><strong>Price:</strong> $4.50</p>
+                <p><strong>Ingredients:</strong> Espresso, steamed milk, milk foam.</p>
+                <button class="btn btn-dark" onclick="addToCart('Cappuccino', 4.50)">Add to cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="mocha.jpg" class="card-img-top" alt="Mocha">
+              <div class="card-body">
+                <h5 class="card-title">Mocha</h5>
+                <p><strong>Price:</strong> $4.75</p>
+                <p><strong>Ingredients:</strong> Espresso, chocolate, steamed milk.</p>
+                <button class="btn btn-dark" onclick="addToCart('Mocha', 4.75)">Add to cart</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="americano.jpg" class="card-img-top" alt="Americano">
+              <div class="card-body">
+                <h5 class="card-title">Americano</h5>
+                <p><strong>Price:</strong> $3.25</p>
+                <p><strong>Ingredients:</strong> Espresso, hot water.</p>
+                <button class="btn btn-dark" onclick="addToCart('Americano', 3.25)">Add to cart</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="flate_white.jpg" class="card-img-top" alt="Flat White">
+              <div class="card-body">
+                <h5 class="card-title">Flat White</h5>
+                <p><strong>Price:</strong> $4.25</p>
+                <p><strong>Ingredients:</strong> Espresso, steamed milk.</p>
+                <button class="btn btn-dark" onclick="addToCart('Flat White', 4.25)">Add to cart</button>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#coffeeCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#coffeeCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
+<section class="py-5">
+  <h2 class="text-center mb-4">Drinks</h2>
+  <div id="drinksCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#drinksCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#drinksCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="iced_coffee.jpg" class="card-img-top" alt="Iced Coffee">
+              <div class="card-body">
+                <h5 class="card-title">Iced Coffee</h5>
+                <p><strong>Price:</strong> $3.75</p>
+                <p><strong>Ingredients:</strong> Brewed coffee, ice, milk.</p>
+                <button class="btn btn-dark" onclick="addToCart('Iced Coffee', 3.75)">Add to cart</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="smoothie.jpg" class="card-img-top" alt="Smoothie">
+              <div class="card-body">
+                <h5 class="card-title">Smoothie</h5>
+                <p><strong>Price:</strong> $4.25</p>
+                <p><strong>Ingredients:</strong> Mixed fruits, yogurt, honey.</p>
+                <button class="btn btn-dark" onclick="addToCart('Smoothie', 4.25)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="lemonade.jpg" class="card-img-top" alt="Lemonade">
+              <div class="card-body">
+                <h5 class="card-title">Lemonade</h5>
+                <p><strong>Price:</strong> $2.50</p>
+                <p><strong>Ingredients:</strong> Lemon juice, sugar, water.</p>
+                <button class="btn btn-dark" onclick="addToCart('Lemonade', 2.50)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="hot_chocolate.webp" class="card-img-top" alt="Hot Chocolate">
+              <div class="card-body">
+                <h5 class="card-title">Hot Chocolate</h5>
+                <p><strong>Price:</strong> $3.50</p>
+                <p><strong>Ingredients:</strong> Cocoa powder, milk, sugar, whipped cream.</p>
+                <button class="btn btn-dark" onclick="addToCart('Hot Chocolate', 3.50)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="frappuccino.webp" class="card-img-top" alt="Frappuccino">
+              <div class="card-body">
+                <h5 class="card-title">Frappuccino</h5>
+                <p><strong>Price:</strong> $4.50</p>
+                <p><strong>Ingredients:</strong> Coffee, milk, ice, whipped cream.</p>
+                <button class="btn btn-dark" onclick="addToCart('Frappuccino', 4.50)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="green_tea.webp" class="card-img-top" alt="Green Tea">
+              <div class="card-body">
+                <h5 class="card-title">Green Tea</h5>
+                <p><strong>Price:</strong> $2.75</p>
+                <p><strong>Ingredients:</strong> Green tea leaves, water, honey.</p>
+                <button class="btn btn-dark" onclick="addToCart('Green Tea', 2.75)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#drinksCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#drinksCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
+
+<section class="py-5">
+  <h2 class="text-center mb-4">Snacks</h2>
+  <div id="snacksCarousel" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#snacksCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#snacksCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="croissant.avif" class="card-img-top" alt="Croissant">
+              <div class="card-body">
+                <h5 class="card-title">Croissant</h5>
+                <p><strong>Price:</strong> $2.50</p>
+                <p><strong>Ingredients:</strong> Butter, flour, sugar, yeast.</p>
+                <button class="btn btn-dark" onclick="addToCart('Croissant', 2.50)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="muffin.webp" class="card-img-top" alt="Muffin">
+              <div class="card-body">
+                <h5 class="card-title">Muffin</h5>
+                <p><strong>Price:</strong> $3.00</p>
+                <p><strong>Ingredients:</strong> Flour, eggs, sugar, chocolate chips.</p>
+                <button class="btn btn-dark" onclick="addToCart('Muffin', 3.00)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="bagel.jpg" class="card-img-top" alt="Bagel">
+              <div class="card-body">
+                <h5 class="card-title">Bagel</h5>
+                <p><strong>Price:</strong> $2.75</p>
+                <p><strong>Ingredients:</strong> Flour, yeast, salt, sugar.</p>
+                <button class="btn btn-dark" onclick="addToCart('Bagel', 2.75)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="brownie.jpg" class="card-img-top" alt="Brownie">
+              <div class="card-body">
+                <h5 class="card-title">Brownie</h5>
+                <p><strong>Price:</strong> $3.50</p>
+                <p><strong>Ingredients:</strong> Chocolate, butter, sugar, eggs.</p>
+                <button class="btn btn-dark" onclick="addToCart('Brownie', 3.50)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="cookies.jpeg" class="card-img-top" alt="Cookie">
+              <div class="card-body">
+                <h5 class="card-title">Cookie</h5>
+                <p><strong>Price:</strong> $2.25</p>
+                <p><strong>Ingredients:</strong> Flour, butter, sugar, chocolate chips.</p>
+                <button class="btn btn-dark" onclick="addToCart('Cookie', 2.25)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="scones.webp" class="card-img-top" alt="Scone">
+              <div class="card-body">
+                <h5 class="card-title">Scone</h5>
+                <p><strong>Price:</strong> $3.25</p>
+                <p><strong>Ingredients:</strong> Flour, butter, sugar, milk.</p>
+                <button class="btn btn-dark" onclick="addToCart('Scone', 3.25)">Add to cart</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#snacksCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#snacksCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
+
+
+
+
+  <footer class="bg-dark text-white text-center py-4">
+    <p>&copy; 2025 Coffee Lovers. All rights reserved BHUVANESH.</p>
+    <p>Follow us on <a href="https://www.instagram.com/_.bhuvanesh.___/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D#" class="text-decoration-none text-light">Instagram</a> | <a href="#" class="text-decoration-none text-light">Facebook</a> | <a href="#" class="text-decoration-none text-light">Twitter</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
